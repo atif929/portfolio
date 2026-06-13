@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { FiArrowRight, FiDownload, FiMail } from 'react-icons/fi'
+import { FiArrowRight, FiMail } from 'react-icons/fi'
 import Button from '@/components/ui/Button'
+import HeroSocialLinks from './HeroSocialLinks'
 
 const roles = [
   'Software Engineer',
@@ -18,9 +19,9 @@ const fadeUp = {
 }
 
 const HeroSection = () => {
-  const [roleIndex,   setRoleIndex]   = useState(0)
-  const [displayed,   setDisplayed]   = useState('')
-  const [isDeleting,  setIsDeleting]  = useState(false)
+  const [roleIndex,  setRoleIndex]  = useState(0)
+  const [displayed,  setDisplayed]  = useState('')
+  const [isDeleting, setIsDeleting] = useState(false)
 
   useEffect(() => {
     const current = roles[roleIndex]
@@ -32,7 +33,7 @@ const HeroSection = () => {
       timeout = setTimeout(() => setIsDeleting(true), 2000)
     } else if (isDeleting && displayed.length > 0) {
       timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length - 1)), 40)
-    } else if (isDeleting && displayed.length === 0) {
+    } else {
       setIsDeleting(false)
       setRoleIndex((prev) => (prev + 1) % roles.length)
     }
@@ -43,16 +44,14 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-background">
 
-      {/* Background */}
       <div className="absolute inset-0 bg-hero-gradient pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-          {/* ── Left — Text ── */}
+          {/* ── Left ── */}
           <div className="flex flex-col gap-6 order-2 lg:order-1">
 
-            {/* Badge */}
             <motion.div
               variants={fadeUp} initial="initial" animate="animate"
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -63,7 +62,6 @@ const HeroSection = () => {
               </span>
             </motion.div>
 
-            {/* Name */}
             <motion.div
               variants={fadeUp} initial="initial" animate="animate"
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -76,11 +74,10 @@ const HeroSection = () => {
               </h1>
             </motion.div>
 
-            {/* Typewriter */}
             <motion.div
               variants={fadeUp} initial="initial" animate="animate"
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex items-center gap-2 h-10"
+              className="h-10 flex items-center"
             >
               <span className="text-xl sm:text-2xl font-semibold text-muted">
                 {displayed}
@@ -88,17 +85,15 @@ const HeroSection = () => {
               </span>
             </motion.div>
 
-            {/* Description */}
             <motion.p
               variants={fadeUp} initial="initial" animate="animate"
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-muted text-base sm:text-lg leading-relaxed max-w-lg"
             >
-              Software Engineering student at Sukkur IBA building AI-powered software solutions
-              that merge intelligent systems with modern web experiences.
+              Software Engineering student at Sukkur IBA building AI-powered software
+              solutions that merge intelligent systems with modern web experiences.
             </motion.p>
 
-            {/* Buttons */}
             <motion.div
               variants={fadeUp} initial="initial" animate="animate"
               transition={{ duration: 0.6, delay: 0.5 }}
@@ -116,10 +111,16 @@ const HeroSection = () => {
               </Link>
             </motion.div>
 
-            {/* Stats */}
             <motion.div
               variants={fadeUp} initial="initial" animate="animate"
               transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <HeroSocialLinks />
+            </motion.div>
+
+            <motion.div
+              variants={fadeUp} initial="initial" animate="animate"
+              transition={{ duration: 0.6, delay: 0.7 }}
               className="flex items-center gap-8 pt-2"
             >
               {[
@@ -136,7 +137,7 @@ const HeroSection = () => {
 
           </div>
 
-          {/* ── Right — Profile Image ── */}
+          {/* ── Right — Image ── */}
           <motion.div
             className="flex items-center justify-center order-1 lg:order-2"
             initial={{ opacity: 0, scale: 0.8 }}
@@ -162,7 +163,7 @@ const HeroSection = () => {
               <motion.div
                 animate={{ y: [-5, 5, -5] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -top-2 -right-2 glass-card px-3 py-2 rounded-xl shadow-glass"
+                className="absolute -top-2 -right-2 glass-card px-3 py-2 rounded-xl"
               >
                 <span className="text-xs font-semibold text-text">⚡ React Dev</span>
               </motion.div>
@@ -170,7 +171,7 @@ const HeroSection = () => {
               <motion.div
                 animate={{ y: [5, -5, 5] }}
                 transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -bottom-2 -left-2 glass-card px-3 py-2 rounded-xl shadow-glass"
+                className="absolute -bottom-2 -left-2 glass-card px-3 py-2 rounded-xl"
               >
                 <span className="text-xs font-semibold text-text">🚀 Open to Work</span>
               </motion.div>
@@ -180,7 +181,6 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
