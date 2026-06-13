@@ -21,18 +21,6 @@ export default defineConfig({
       '@assets':     path.resolve(__dirname, './src/assets'),
     },
   },
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          react:  ['react', 'react-dom'],
-          router: ['react-router-dom'],
-          motion: ['framer-motion'],
-          icons:  ['react-icons'],
-        },
-      },
-    },
-  },
   server: {
     port: 3000,
     open: true,
