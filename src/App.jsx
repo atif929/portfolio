@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
-import AppRoutes from '@/routes/AppRoutes'
-import ScrollToTop from '@/components/common/ScrollToTop'
-import LoadingScreen from '@/components/common/LoadingScreen'
+import ScrollToTop    from '@/components/common/ScrollToTop'
+import LoadingScreen  from '@/components/common/LoadingScreen'
+
+const AppRoutes = lazy(() => import('@/routes/AppRoutes'))
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -20,7 +21,9 @@ function App() {
         {loading ? (
           <LoadingScreen key="loading" />
         ) : (
-          <AppRoutes key="app" />
+          <Suspense fallback={null}>
+            <AppRoutes key="app" />
+          </Suspense>
         )}
       </AnimatePresence>
     </BrowserRouter>

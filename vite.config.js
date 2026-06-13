@@ -8,6 +8,7 @@ const __dirname  = path.dirname(__filename)
 
 export default defineConfig({
   plugins: [react()],
+
   resolve: {
     alias: {
       '@':           path.resolve(__dirname, './src'),
@@ -21,8 +22,50 @@ export default defineConfig({
       '@assets':     path.resolve(__dirname, './src/assets'),
     },
   },
+
+  build: {
+    // Increase chunk warning limit
+    chunkSizeWarningLimit: 1000,
+
+    rollupOptions: {
+      output: {
+        // Code splitting by feature
+        manualChunks: (id) => {
+          if (id.includes('node_modules/react') ||
+              id.includes('node_modules/react-dom')) {
+            return 'react-core'
+          }
+          if (id.includes('node_modules/framer-motion')) {
+            return 'framer-motion'
+          }
+          if (id.includes('node_modules/react-router-dom') ||
+              id.includes('node_modules/react-router')) {
+            return 'router'
+          }
+          if (id.includes('node_modules/react-icons')) {
+            return 'icons'
+          }
+        },
+      },
+    },
+
+    // Minification
+    minify: 'esbuild',
+
+    // Source maps off in production
+    sourcemap: false,
+
+    // Target modern browsers
+    target: 'es2020',
+  },
+
   server: {
     port: 3000,
     open: true,
+  },
+
+  // Optimize deps
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'framer-motion', 'react-router-dom'],
   },
 })
