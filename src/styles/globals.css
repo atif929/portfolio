@@ -315,3 +315,49 @@
   }
   html { scroll-behavior: auto; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE OVERRIDES
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Mobile (< 640px) ─────────────────────────────────── */
+@media (max-width: 640px) {
+  :root {
+    --section-padding-y: 4rem;
+    --section-padding-x: 1rem;
+  }
+
+  h1 { font-size: clamp(2rem, 8vw, 3rem); }
+  h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
+  h3 { font-size: clamp(1.25rem, 5vw, 1.75rem); }
+}
+
+/* ── Tablet (640px – 1024px) ──────────────────────────── */
+@media (min-width: 640px) and (max-width: 1024px) {
+  :root {
+    --section-padding-y: 5rem;
+    --section-padding-x: 1.5rem;
+  }
+}
+
+/* ── Ultra-Wide (> 1920px) ────────────────────────────── */
+@media (min-width: 1920px) {
+  :root {
+    --container-max-w: 1600px;
+    --section-padding-y: 8rem;
+  }
+}
+
+/* ── Touch devices ────────────────────────────────────── */
+@media (hover: none) {
+  .card:hover        { transform: none; }
+  .btn-glow:hover    { transform: none; }
+  .hover-lift:hover  { transform: none; }
+}
+
+/* ── Safe area for notched phones ─────────────────────── */
+@supports (padding: env(safe-area-inset-bottom)) {
+  footer {
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+  }
+}
