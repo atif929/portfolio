@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import {
   SiPython, SiReact, SiFastapi, SiDjango, SiTensorflow,
   SiPytorch, SiScikitlearn, SiNumpy, SiPandas, SiOpencv,
-  SiGit, SiGithub, SiJavascript, SiHtml5, SiCss3,
+  SiGit, SiGithub, SiJavascript, SiHtml5,
   SiMongodb, SiPostgresql, SiVercel, SiFlask, SiNodedotjs
 } from 'react-icons/si'
 
@@ -10,12 +10,12 @@ const techs = [
   { name: 'Python',       icon: <SiPython />,      color: '#3776AB' },
   { name: 'React',        icon: <SiReact />,       color: '#61DAFB' },
   { name: 'FastAPI',      icon: <SiFastapi />,     color: '#009688' },
-  { name: 'Django',       icon: <SiDjango />,      color: '#092E20' },
+  { name: 'Django',       icon: <SiDjango />,      color: '#44B78B' },
   { name: 'TensorFlow',   icon: <SiTensorflow />,  color: '#FF6F00' },
   { name: 'PyTorch',      icon: <SiPytorch />,     color: '#EE4C2C' },
   { name: 'Scikit-learn', icon: <SiScikitlearn />, color: '#F7931E' },
-  { name: 'NumPy',        icon: <SiNumpy />,       color: '#013243' },
-  { name: 'Pandas',       icon: <SiPandas />,      color: '#150458' },
+  { name: 'NumPy',        icon: <SiNumpy />,       color: '#4DABCF' },
+  { name: 'Pandas',       icon: <SiPandas />,      color: '#6E40C9' },
   { name: 'OpenCV',       icon: <SiOpencv />,      color: '#5C3EE8' },
   { name: 'JavaScript',   icon: <SiJavascript />,  color: '#F7DF1E' },
   { name: 'Node.js',      icon: <SiNodedotjs />,   color: '#339933' },
@@ -26,7 +26,6 @@ const techs = [
   { name: 'Flask',        icon: <SiFlask />,       color: '#ffffff' },
   { name: 'Vercel',       icon: <SiVercel />,      color: '#ffffff' },
   { name: 'HTML5',        icon: <SiHtml5 />,       color: '#E34F26' },
-  { name: 'CSS3',         icon: <SiCss3 />,        color: '#1572B6' },
 ]
 
 const MarqueeRow = ({ items, direction = 'left', speed = 30 }) => {
@@ -67,10 +66,8 @@ const TechMarquee = () => {
 
   return (
     <section className="py-16 bg-background relative overflow-hidden">
-      {/* Fade edges */}
       <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-
       <div className="flex flex-col gap-4">
         <MarqueeRow items={row1} direction="left"  speed={35} />
         <MarqueeRow items={row2} direction="right" speed={28} />
