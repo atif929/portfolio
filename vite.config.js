@@ -48,15 +48,6 @@ export default defineConfig({
         },
       },
     },
-
-    // Minification
-    minify: 'esbuild',
-
-    // Source maps off in production
-    sourcemap: false,
-
-    // Target modern browsers
-    target: 'es2020',
   },
 
   server: {
